@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   title: "Vipin Yadav | Full Stack .NET Software Engineer",
   description:
     "Portfolio of Vipin Yadav, a Full Stack .NET Software Engineer specializing in .NET Core, C#, SQL, Angular, Microservices, API development, and scalable enterprise applications.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   keywords: [
     "Vipin Yadav",
     "Full Stack .NET Software Engineer",
