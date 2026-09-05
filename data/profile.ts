@@ -11,7 +11,7 @@ export const profile = {
   resumeUrl: "/resume/vipin-yadav-resume.pdf",
   resumeDownloadName: "Vipin_Yadav_Resume.pdf",
   shortBio:
-    "I'm Vipin Yadav, a Full Stack .NET Software Engineer with 5.5+ years of experience building scalable APIs, enterprise applications, microservices, and database-driven systems.",
+    "I’m Vipin Yadav, a Full Stack .NET Software Engineer with 5.5+ years of experience building scalable APIs, enterprise applications, microservices, and high-performance database-driven solutions. I specialize in .NET Core, C#, ASP.NET MVC, Web APIs, Angular, React, and SQL Server, with a strong focus on clean architecture, performance, and scalable software development.",
 };
 
 export const navItems: NavItem[] = [
