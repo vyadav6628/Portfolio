@@ -2,7 +2,7 @@ import type { ExperienceItem } from "@/types";
 
 export const experience: ExperienceItem[] = [
   {
-    company: "Omninet Technologies",
+    company: "Omninet Technologies Private Limited",
     location: "Lucknow",
     role: "Software Engineer, Full Stack",
     project: "LU Exam Post — Lucknow University Result Processing System",
@@ -68,7 +68,7 @@ export const experience: ExperienceItem[] = [
     accent: "from-violet-500/30 to-fuchsia-500/30",
   },
   {
-    company: "Soft One Global",
+    company: "Soft One Global ",
     location: "Lucknow",
     role: "Software Developer",
     project: "Software Development & Maintenance",
@@ -84,7 +84,7 @@ export const experience: ExperienceItem[] = [
     accent: "from-amber-500/30 to-orange-500/30",
   },
   {
-    company: "Mecatredz Technology",
+    company: "Mecatredz Technology Private Limited",
     location: "Lucknow",
     role: "Apprenticeship Trainee",
     project: "Hands-on Training & Development Tasks",
