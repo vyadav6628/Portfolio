@@ -5,7 +5,7 @@ import { navItems, profile } from "@/data/profile";
 export function Footer() {
   return (
     <footer className="border-t border-[var(--border)] bg-[var(--card)]/80">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
+      {/* <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-8">
         <div>
           <div className="mb-4 flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-400/30 bg-cyan-500/10 text-sm font-bold text-cyan-700 dark:text-cyan-200">
@@ -44,7 +44,7 @@ export function Footer() {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
       <div className="border-t border-[var(--border)] px-4 py-5 text-center text-sm text-[var(--muted)] sm:px-6 lg:px-8">
         © 2026 Vipin Yadav. All rights reserved.
       </div>

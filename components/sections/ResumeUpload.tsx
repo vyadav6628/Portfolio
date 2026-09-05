@@ -15,7 +15,7 @@ import {
   UploadCloud,
   X,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const MAX_SIZE = 5 * 1024 * 1024;
 const ACCEPTED_TYPES = [
@@ -620,11 +620,23 @@ function DownloadResumeButton() {
 
 export function ResumeUpload() {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const uploadIntervalRef = useRef<number | null>(null);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [status, setStatus] = useState<"idle" | "uploading" | "success" | "error">("idle");
   const [progress, setProgress] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
+
+  const clearUploadInterval = () => {
+    if (uploadIntervalRef.current !== null) {
+      window.clearInterval(uploadIntervalRef.current);
+      uploadIntervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    return () => clearUploadInterval();
+  }, []);
 
   const validateFile = (file: File) => {
     const extension = file.name.split(".").pop()?.toLowerCase();
@@ -642,6 +654,10 @@ export function ResumeUpload() {
   };
 
   const startUpload = (file: File) => {
+    if (uploadIntervalRef.current !== null) {
+      return;
+    }
+
     const validation = validateFile(file);
 
     if (validation) {
@@ -655,10 +671,10 @@ export function ResumeUpload() {
     setStatus("uploading");
     setProgress(0);
 
-    const interval = setInterval(() => {
+    uploadIntervalRef.current = window.setInterval(() => {
       setProgress((current) => {
         if (current >= 100) {
-          clearInterval(interval);
+          clearUploadInterval();
           setStatus("success");
           return 100;
         }
@@ -681,6 +697,7 @@ export function ResumeUpload() {
   };
 
   const clearSelection = () => {
+    clearUploadInterval();
     setSelectedFile(null);
     setStatus("idle");
     setProgress(0);

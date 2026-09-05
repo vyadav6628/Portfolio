@@ -1,7 +1,7 @@
 "use client";
 
 import { Send } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import { profile } from "@/data/profile";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -17,6 +17,8 @@ export function Contact() {
   const [form, setForm] = useState(initialState);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [feedback, setFeedback] = useState("");
+  const isSubmittingRef = useRef(false);
+  const isLoading = status === "loading";
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -26,6 +28,12 @@ export function Contact() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (isSubmittingRef.current) {
+      return;
+    }
+
+    isSubmittingRef.current = true;
     setStatus("loading");
     setFeedback("");
 
@@ -54,6 +62,8 @@ export function Contact() {
           ? error.message
           : "Unable to send your message right now.",
       );
+    } finally {
+      isSubmittingRef.current = false;
     }
   };
 
@@ -149,11 +159,22 @@ export function Contact() {
 
           <button
             type="submit"
-            disabled={status === "loading"}
+            disabled={isLoading}
             className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 via-blue-600 to-violet-600 px-5 py-3 text-sm font-medium text-white disabled:cursor-not-allowed disabled:opacity-70"
           >
-            <Send size={16} />
-            {status === "loading" ? "Sending..." : "Send Message"}
+            {isLoading ? (
+              <>
+                <div className="flex items-center justify-center">
+                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                </div>
+                <span>Sending...</span>
+              </>
+            ) : (
+              <>
+                <Send size={16} />
+                <span>Send Message</span>
+              </>
+            )}
           </button>
         </form>
       </div>
